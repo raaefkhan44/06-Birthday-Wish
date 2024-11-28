@@ -8,11 +8,6 @@ import dynamic from 'next/dynamic';
 import { FaBirthdayCake, FaGift } from 'react-icons/fa';
 import { GiBalloons } from 'react-icons/gi';
 
-type ConfettiProps = {
-  width: number;
-  height: number;
-};
-
 const DynamicConfetti = dynamic(() => import('react-confetti'), { ssr: false });
 
 const candleColors = ['#FFB74D', '#FF7043', '#42A5F5', '#66BB6A', '#AB47BC'];
@@ -20,11 +15,11 @@ const balloonColors = ['#FFB74D', '#64B5F6', '#FFD54F', '#4DB6AC', '#BA68C8'];
 const confettiColors = ['#FFB74D', '#64B5F6', '#FFD54F', '#4DB6AC', '#BA68C8', '#FF8A65', '#82B1FF'];
 
 export default function BirthdayWish() {
-  const [candlesLit, setCandlesLit] = useState<number>(0);
-  const [balloonsPoppedCount, setBalloonsPoppedCount] = useState<number>(0);
-  const [showConfetti, setShowConfetti] = useState<boolean>(false);
-  const [windowSize, setWindowSize] = useState<ConfettiProps>({ width: 0, height: 0 });
-  const [celebrating, setCelebrating] = useState<boolean>(false);
+  const [candlesLit, setCandlesLit] = useState(0);
+  const [balloonsPoppedCount, setBalloonsPoppedCount] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [celebrating, setCelebrating] = useState(false);
 
   const totalCandles = 5;
   const totalBalloons = 5;
@@ -33,6 +28,7 @@ export default function BirthdayWish() {
     const handleResize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     };
+
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -44,15 +40,15 @@ export default function BirthdayWish() {
     }
   }, [candlesLit, balloonsPoppedCount]);
 
-  const lightCandle = (index: number) => {
+  const lightCandle = (index) => {
     if (index === candlesLit) {
-      setCandlesLit(prev => prev + 1);
+      setCandlesLit((prev) => prev + 1);
     }
   };
 
-  const popBalloon = (index: number) => {
+  const popBalloon = (index) => {
     if (index === balloonsPoppedCount) {
-      setBalloonsPoppedCount(prev => prev + 1);
+      setBalloonsPoppedCount((prev) => prev + 1);
     }
   };
 
@@ -60,7 +56,7 @@ export default function BirthdayWish() {
     setCelebrating(true);
     setShowConfetti(true);
     const interval = setInterval(() => {
-      setCandlesLit(prev => {
+      setCandlesLit((prev) => {
         if (prev < totalCandles) return prev + 1;
         clearInterval(interval);
         return prev;
