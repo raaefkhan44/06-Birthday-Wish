@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
@@ -11,8 +10,8 @@ type ConfettiProps = {
   width: number
   height: number
 }
-const DynamicConfetti = dynamic(() => import('react-confetti'), { ssr: false })
 
+const DynamicConfetti = dynamic(() => import('react-confetti'), { ssr: false })
 const candleColors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8']
 const balloonColors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8']
 const confettiColors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE']
@@ -23,7 +22,6 @@ export default function BirthdayWish() {
   const [showConfetti, setShowConfetti] = useState<boolean>(false)
   const [windowSize, setWindowSize] = useState<ConfettiProps>({ width: 0, height: 0 })
   const [celebrating, setCelebrating] = useState<boolean>(false)
-
   const totalCandles: number = 5
   const totalBalloons: number = 5
 
@@ -135,6 +133,7 @@ export default function BirthdayWish() {
               onClick={celebrate}
               disabled={celebrating}
             >
+
               Celebrate! <FaGift className="ml-2 h-4 w-4" />
             </Button>
           </CardFooter>
@@ -148,7 +147,9 @@ export default function BirthdayWish() {
           numberOfPieces={500}
           colors={confettiColors}
         />
+
       )}
+      
     </div>
   )
 }
