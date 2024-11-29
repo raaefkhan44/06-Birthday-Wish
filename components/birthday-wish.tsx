@@ -7,12 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import { FaBirthdayCake, FaGift } from 'react-icons/fa'
 import { GiBalloons } from 'react-icons/gi'
-
 type ConfettiProps = {
   width: number
   height: number
 }
-
 const DynamicConfetti = dynamic(() => import('react-confetti'), { ssr: false })
 
 const candleColors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8']
